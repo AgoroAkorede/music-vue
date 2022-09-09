@@ -117,6 +117,8 @@
 </template>
 
 <script>
+import { mapMutations, mapState } from "vuex";
+
 export default {
   name: "RegisterForm",
   data() {
@@ -140,7 +142,7 @@ export default {
     };
   },
   methods: {
-    register(values) {
+    async register(values) {
       this.reg_show_alert = true;
       this.reg_in_submission = true;
       this.reg_alert_variant = "bg-blue-500";
@@ -148,9 +150,27 @@ export default {
 
       this.reg_alert_variant = "bg-green-500";
       this.reg_alert_msg = "Success Your account has been created.";
+      let userCred = null;
 
-      console.log(values);
+      try {
+        await this.$store.dispatch("register", values);
+      } catch (error) {
+        this.reg_show_alert = false;
+        this.reg_in_submission = false;
+        this.reg_alert_variant = "bg-blue-500";
+        this.reg_alert_msg =
+          "An unexpected error occured. Please try agin later.";
+        return;
+      }
+
+      this.reg_alert_variant = "bg-green-500";
+      this.reg_alert_msg = "Success! Your account has been created.";
+      console.log(userCred);
     },
+    ...mapMutations(["toggleAuth"]),
+  },
+  computed: {
+    ...mapState(["userLoggedIn"]),
   },
 };
 </script>
