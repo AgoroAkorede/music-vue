@@ -7,7 +7,16 @@
     <div class="container mx-auto flex items-center">
       <button
         type="button"
-        class="z-50 h-24 w-24 text-3xl bg-white text-black rounded-full focus:outline-none"
+        class="
+          z-50
+          h-24
+          w-24
+          text-3xl
+          bg-white
+          text-black
+          rounded-full
+          focus:outline-none
+        "
         @click.prevent="newSong(song)"
       >
         <i class="fas fa-play"></i>
@@ -15,6 +24,7 @@
       <div class="z-50 text-left ml-8">
         <div class="text-3xl font-bold">{{ song.modified_name }}</div>
         <div>{{ song.genre }}</div>
+        <div class="song-price">{{ $n(1, "currency") }}</div>
       </div>
     </div>
   </section>
@@ -41,7 +51,19 @@
           <vee-field
             as="textarea"
             name="comment"
-            class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded mb-4"
+            class="
+              block
+              w-full
+              py-1.5
+              px-3
+              text-gray-800
+              border border-gray-300
+              transition
+              duration-500
+              focus:outline-none focus:border-black
+              rounded
+              mb-4
+            "
             placeholder="Your comment here..."
           ></vee-field>
           <ErrorMessage class="text-red-600" name="comment" />
@@ -55,7 +77,18 @@
         </vee-form>
         <select
           v-model="sort"
-          class="block mt-4 py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
+          class="
+            block
+            mt-4
+            py-1.5
+            px-3
+            text-gray-800
+            border border-gray-300
+            transition
+            duration-500
+            focus:outline-none focus:border-black
+            rounded
+          "
         >
           <option value="1">Latest</option>
           <option value="2">Oldest</option>
